@@ -44,6 +44,23 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
+            },
+            "hmr": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
             }
           }
         },
@@ -55,6 +72,9 @@
           "configurations": {
             "production": {
               "browserTarget": "homeautomation:build:production"
+            },
+            "hmr": {
+              "browserTarget": "homeautomation:build:hmr"
             }
           }
         },
@@ -108,6 +128,9 @@
           "configurations": {
             "production": {
               "devServerTarget": "homeautomation:serve:production"
+            },
+            "hmr": {
+              "devServerTarget": "homeautomation:serve:hmr"
             }
           }
         },
