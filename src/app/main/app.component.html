@@ -10,7 +10,7 @@
       <div class="headerrighttemp" id="maincontainer" > <div style="vertical-align: middle; border: 1px solid red;">{{currentTempurateStatus.currentTemperature | convertToDegree}}</div>
       
       </div>
-      <div class="headerrightweatherimg" id="maincontainer" ><img src = {{currentTempurateStatus.currentTemperatureUrl}}
+      <div class="headerrightweatherimg" id="maincontainer" ><img src = {{strimg}}
                                                                  width="80%" >
                                                                  </div>
       <div class="headerrightweatherstatus" id="maincontainer" ><div style="border:1px solid red;top: 50%; transform: translateY(-10%); ">{{currentTempurateStatus.currentWeatherStatus }}</div></div>
@@ -33,4 +33,5 @@
   <h1 >
     {{title}}
   </h1>
+  <button (click)="changePic()">Change Pic</button>
 </div>

@@ -1,6 +1,9 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
 var helpers = require('./helpers');
  
 module.exports = {
@@ -31,7 +34,13 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loader: 'file-loader?name=assets/[name].[hash].[ext]'
+        //loader: 'file-loader?name=assets/[name].[hash].[ext]'
+        loader:'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'images/',
+          publicPath: 'images/'
+        }
       },
       {
         test: /\.css$/,
@@ -58,7 +67,19 @@ module.exports = {
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: ['app', 'vendor', 'polyfills']
     // }),
- 
+    new CopyWebpackPlugin([
+      {from:'src/app/images', to: 'images'}
+    ]),
+
+    new UglifyJSPlugin({
+      parallel: true,
+      uglifyOptions: {
+        ecma: 6,
+        compress: false // hangs without this
+      },
+      //cache: path.join(__dirname, 'webpack-cache/uglify-cache'),
+    }),
+
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     })
