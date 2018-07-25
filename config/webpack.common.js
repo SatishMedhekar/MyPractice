@@ -73,6 +73,7 @@ module.exports = {
 
     new UglifyJSPlugin({
       parallel: true,
+      cache: true,
       uglifyOptions: {
         ecma: 6,
         compress: false // hangs without this

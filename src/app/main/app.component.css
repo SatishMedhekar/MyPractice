@@ -7,7 +7,7 @@ line-height: 1.6875;
 font-family: Arial, Helvetica, sans-serif;
 }
 
-#maincontainer {
+#mainContainer {
     position: fixed;
     width: 100%; 
     height: 100%; 
@@ -20,7 +20,7 @@ font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
-#maincontainer.header{
+.header{
     width: 80%;
     height: 8%;
     margin-top: 2%;
@@ -31,37 +31,28 @@ font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     border-radius: 5px;
     border: 1px solid #1e5799;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+5,2989d8+53,207cca+81,7db9e8+100 */
-   
     background: -moz-linear-gradient(top, #1e5799 0%, #2989d8 25%, #207cca 54%, #0d6abc 79%, #7db9e8 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, #1e5799 0%,#2989d8 25%,#207cca 54%,#0d6abc 79%,#7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, #1e5799 0%,#2989d8 25%,#207cca 54%,#0d6abc 79%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-
 }
 
-
-
-#maincontainer.leftnavigation{
+.leftNavigation{
     width: 8%;
     height: 100%;
     background-color: black;
     float: left;
     position: relative;
-    
-
 }
 
-
-#maincontainer.rightnavigation{
+.rightNavigation{
     width:8%;
     height: 100%;
     background-color: black;
     float: right;
     position: relative;
-    
 }
 
-#maincontainer.headerleft{
+.headerLeft{
     width: 15%;
     height: 100%;
     float: left;
@@ -73,22 +64,28 @@ font-family: Arial, Helvetica, sans-serif;
     color: white;
     letter-spacing: 1px;
     border: 1px solid red;
-
 }
 
-#maincontainer.headercenter{
+.headerLeft-text{
+    top: 50%; 
+    transform: translateY(-50%);
+    position: relative; 
+    text-align: left; 
+}
+
+.headerCenter{
     width: 70%;
     height: 100%;
     background: transparent;
     position: relative;
-    font-size: 2.2vw;
+    font-size: 3.2vw;
     font-weight: 700;
     color: white;
+    float: left;
 }
 
-
-#maincontainer.headerright{
-    width: 12%;
+.headerRight{
+    width: 13%;
     height: 100%;
     background: transparent;
     top: 0;
@@ -96,61 +93,50 @@ font-family: Arial, Helvetica, sans-serif;
     vertical-align: left;
     float: right;
     position: relative;
-   
     color: white;
-   
 }
 
-
-#maincontainer.headerrighttemp{
+.headerRight-temprature{
     position: relative; 
-    text-align: left; 
+    text-align: center; 
     float: left;
-    height: 60%;
-    width: 40%;
-    font-size:2vw;
+    height: 65%;
+    width: 50%;
+    font-size:3vw;
     font-weight: 500;
     background: transparent;
-    
     top: 50%; 
     transform: translateY(-70%); 
-   
 }
 
-
-#maincontainer.headerrightweatherstatus{
+.headerRight-weatherStatus{
     position: relative; 
     text-align: center; 
     margin-top: 2%;
     float: left;
-    height: 40%;
-    width: 30%;
+    height: 50%;
+    width: 50%;
     font-size: 1.2vw;
     font-weight: 500;
     background: transparent;
-    
 }
 
-
-#maincontainer.headerrightweatherimg{
+.headerRight-weatherImg{
     position: relative; 
     top: 50%;
     transform: translateY(-50%);
-    text-align: right; 
+    text-align: center; 
     float: right;
     height: 100%;
-    width: 60%;
+    width: 50%;
     background: transparent;
 }
-
 
 .shadow {
     -moz-box-shadow:    4px 1px 2px 1px #ccc;
     -webkit-box-shadow: 4px 2px 2px 1px #ccc;
     box-shadow:         1px 1px 1px 1px grey;
-    
-  }
-
+}
 
 @media only screen and (max-width: 400px) {
     body { font-size:200%;}

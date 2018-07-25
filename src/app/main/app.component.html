@@ -1,34 +1,38 @@
-<div id="maincontainer">
-  <div class="header" id="maincontainer" >
-    <div class="headerleft" id="maincontainer">
-        <div style="top: 50%; transform: translateY(-50%); position: relative; border:1px solid pink; text-align: left; "> left</div>
+<div id="mainContainer">
+  <div class="header"  >
+    
+    <div class="headerLeft" >
+        <div class="headerLeft-text"> left</div>
     </div>
-    <div class="headercenter" id="maincontainer">
-        <div style="vertical-align: middle; height: 50%;  "> {{title}}</div>
+
+    <div class="headerCenter">
+        <div style="transform:translateY(-50%); top:50%; position: relative;  "> {{title}}</div>
     </div>
-    <div class="headerright" id="maincontainer">
-      <div class="headerrighttemp" id="maincontainer" > <div style="vertical-align: middle; border: 1px solid red;">{{currentTempurateStatus.currentTemperature | convertToDegree}}</div>
-      
+
+    <div class="headerRight" >
+      <div class="headerRight-temprature"  > 
+        <div style="vertical-align: middle;">{{currentTempurateStatus.currentTemperature | convertToDegree}}</div>
       </div>
-      <div class="headerrightweatherimg" id="maincontainer" ><img src = {{strimg}}
-                                                                 width="80%" >
-                                                                 </div>
-      <div class="headerrightweatherstatus" id="maincontainer" ><div style="border:1px solid red;top: 50%; transform: translateY(-10%); ">{{currentTempurateStatus.currentWeatherStatus }}</div></div>
+
+      <div class="headerRight-weatherImg"  >
+        <img src = {{strimg}} width="80%" >
+      </div>
+
+      <div class="headerRight-weatherStatus">
+        <div style="top: 50%; transform: translateY(-10%); ">{{currentTempurateStatus.currentWeatherStatus }}</div>
+      </div>
     </div>
+
   </div>
 
-  <div class="leftnavigation" id="maincontainer" >
+  <div class="leftNavigation" >
     <div class="shadow" style="height: 34%; border:1px solid grey; margin-left: 5%; margin-top: 3%; border-top-right-radius: 20px 20px;"> Top</div>
-      <div *ngFor = 'let nl of leftmenu.menudetail' style="height: 100%;" > 
+    <div *ngFor = 'let nl of leftmenu.menudetail' style="height: 100%;" > 
       <div id = {{nl.id}} class="shadow" style="height:20%; border:1px solid red;" > <img src = "" /> </div>
-      <!-- <div class="shadow" style="height: 20%; border:1px solid grey; margin-left: 5%; margin-top: 6%; border-radius: 1px;"> Second</div>-->
-      <!--<div class="shadow" style="height: 20%; border:1px solid grey; margin-left: 5%; margin-top: 6%; border-radius: 1px;"> Third</div>-->
-     </div> 
+    </div> 
   </div>
 
-  <div class="rightnavigation" id="maincontainer">
-
-  </div>
+  <div class="rightNavigation"></div>
   
   <h1 >
     {{title}}
