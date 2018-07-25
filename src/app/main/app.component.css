@@ -133,6 +133,11 @@ font-family: Arial, Helvetica, sans-serif;
 }
 
 .shadow {
+    height: 34%; 
+    border:1px solid grey; 
+    margin-left: 5%; 
+    margin-top: 3%; 
+    border-top-right-radius: 20px 20px;
     -moz-box-shadow:    4px 1px 2px 1px #ccc;
     -webkit-box-shadow: 4px 2px 2px 1px #ccc;
     box-shadow:         1px 1px 1px 1px grey;
