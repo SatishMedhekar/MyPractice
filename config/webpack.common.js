@@ -71,16 +71,17 @@ module.exports = {
       {from:'src/app/images', to: 'images'}
     ]),
 
-    new UglifyJSPlugin({
-      parallel: true,
-      cache: true,
-      uglifyOptions: {
-        ecma: 6,
-        compress: false // hangs without this
-      },
-      //cache: path.join(__dirname, 'webpack-cache/uglify-cache'),
-    }),
-
+    // new UglifyJSPlugin({
+    //   parallel: true,
+    //   cache: true,
+    //   uglifyOptions: {
+    //     ecma: 6,
+    //     compress: false // hangs without this
+    //   },
+    //   //cache: path.join(__dirname, 'webpack-cache/uglify-cache'),
+    // }),
+    new webpack.optimize.UglifyJsPlugin() ,
+    
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     })

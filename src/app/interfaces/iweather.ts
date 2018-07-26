@@ -4,8 +4,6 @@ interface ICurrentWeather {
     currentTemperatureUrl? : string;
 }
 
-interface IWeatherService<T>{
-    GetTodaysWeatherForMenuBar:(T:number)=>T
-}
 
-export {ICurrentWeather, IWeatherService}
+
+export {ICurrentWeather}

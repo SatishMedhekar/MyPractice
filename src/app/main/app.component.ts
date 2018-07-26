@@ -1,7 +1,8 @@
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import {ICurrentWeather} from '../interfaces/iweather';
 import { IMenu, IMenuDetail } from '../interfaces/imenu';
-import {getPhotoList, uploadWeatherImages} from '../service/customfunction';
+import {CommonFunction} from '../service/customfunction';
+import{Menu} from '../interfaces/enum';
 
 @Component({
   selector: 'app-root',
@@ -12,25 +13,21 @@ import {getPhotoList, uploadWeatherImages} from '../service/customfunction';
 export class AppComponent implements OnInit {
   title = 'Home';
   currentTempurateStatus : ICurrentWeather = {};
-  leftmenu : IMenu = {};
-  menudetail : IMenuDetail[];
-  private imgv:any;
-  private imgv2:any;
-  strimg:string;
+  leftMenu : IMenu={};
+
+
+  constructor(private commonFunction:CommonFunction){}
 
   ngOnInit(){
-    this.strimg = '../images/weather/sun.png';
-    uploadWeatherImages();
-      
+    this.commonFunction.uploadWeatherImages();
+    this.leftMenu = this.commonFunction.getMenu().filter(a=>a.menuType == Menu.LEFT)[0];      
 
     this.currentTempurateStatus.currentTemperature = '77';
-    //this.currentTempurateStatus.currentTemperatureUrl = require("../images/weather/suncloud.png");
     this.currentTempurateStatus.currentWeatherStatus = 'Cloudy';
+    this.currentTempurateStatus.currentTemperatureUrl = '../images/weather/sun.png';
     this.title='Home';
  }
 
- changePic(){
-  this.strimg = '../images/Pics/hotsun.png';
- }
+
 }
 

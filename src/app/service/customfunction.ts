@@ -1,9 +1,13 @@
+import{Injectable} from '@angular/core';
 import {IPhoto} from '../interfaces/iphoto';
+import{IMenu,IMenuDetail} from '../interfaces/imenu';
+import{Menu} from '../interfaces/enum';
 
+@Injectable()
 
-const dirPath = '../images/'
+export class CommonFunction{
 
-function getPhotoList():IPhoto[]{
+ getPhotoList():IPhoto[]{
     let photolist:IPhoto[];
     photolist = [
         {id:1, path:'../images/', PhotoName:'night.jpg'},
@@ -33,7 +37,7 @@ function getPhotoList():IPhoto[]{
     return photolist;
 }
 
-function uploadWeatherImages():void{
+ uploadWeatherImages():void{
        
         require('../images/night.jpg')
         require('../images/CloudyNight.jpg')
@@ -58,8 +62,16 @@ function uploadWeatherImages():void{
         require('../images/Pics/moderatecloudsun.png')
         require('../images/Pics/sunmorecloudrain.png')
         require('../images/Pics/sunverylittlecloud.png')
-    
-    
 }
 
-export{getPhotoList, uploadWeatherImages};
+    getMenu():IMenu[]{
+        return [{menuType: Menu.LEFT,
+                menuDetail:[{id:'1', displayOrder: 0, name: 'Light', imagePath: '../images/Extras/', imageFileName: 'light16.ico'   },
+                            {id:'2', displayOrder: 1, name: 'Music', imagePath: '../images/Extras/', imageFileName: 'music16.ico'   },
+                            {id:'3', displayOrder: 2, name: 'Message', imagePath: '../images/Extras/', imageFileName: 'message16.ico'   }]  },
+                {menuType: Menu.RIGHT, 
+                    menuDetail:[{id:'4', displayOrder: 0, name: 'Weather', imagePath: '../images/Extras/', imageFileName: 'temperature24.ico'   },
+                                {id:'5', displayOrder: 1, name: 'Calendar', imagePath: '../images/Extras/', imageFileName: 'calendar24.ico'   },
+                                {id:'6', displayOrder: 2, name: 'Setting', imagePath: '../images/Extras/', imageFileName: 'settings-25-16.ico'   }]  }]
+    }
+}

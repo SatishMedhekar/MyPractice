@@ -1,12 +1,16 @@
-export interface IMenu{
-    menuType?:string;
-    menudetail?:IMenuDetail[];
+ import{ Menu } from './enum';
+
+ interface IMenu{
+    menuType?:Menu;
+    menuDetail?:IMenuDetail[];
 }
 
-export interface IMenuDetail{
+ interface IMenuDetail{
     id?:string;
     displayOrder?:number;
     name?:string;
     imagePath?: string;
     imageFileName? : string;
 }
+
+export {IMenu, IMenuDetail};

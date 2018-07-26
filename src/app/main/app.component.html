@@ -1,35 +1,11 @@
 <div id="mainContainer">
-  <div class="header"  >
-    
-    <div class="headerLeft" >
-        <div class="headerLeft-text"> left</div>
+    <div class="header">
+      <header-navigation [currentTempurateStatus] = "currentTempurateStatus" 
+                         [title] = "title"></header-navigation> 
     </div>
-
-    <div class="headerCenter">
-        <div style="transform:translateY(-50%); top:50%; position: relative;  "> {{title}}</div>
-    </div>
-
-    <div class="headerRight" >
-      <div class="headerRight-temprature"  > 
-        <div style="vertical-align: middle;">{{currentTempurateStatus.currentTemperature | convertToDegree}}</div>
-      </div>
-
-      <div class="headerRight-weatherImg"  >
-        <img src = {{strimg}} width="80%" >
-      </div>
-
-      <div class="headerRight-weatherStatus">
-        <div style="top: 50%; transform: translateY(-10%); ">{{currentTempurateStatus.currentWeatherStatus }}</div>
-      </div>
-    </div>
-
-  </div>
 
   <div class="leftNavigation" >
-    <div class="shadow"> Top</div>
-    <div *ngFor = 'let nl of leftmenu.menudetail' style="height: 100%;" > 
-      <div id = {{nl.id}} class="shadow" style="height:20%;" > <img src = "" /> </div>
-    </div> 
+   <left-navigation [leftMenu] = "leftMenu" ></left-navigation>
   </div>
 
   <div class="rightNavigation"></div>
