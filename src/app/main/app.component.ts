@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   title = 'Home';
   currentTempurateStatus : ICurrentWeather = {};
   leftMenu : IMenu={};
+  rightMenu : IMenu={};
 
 
   constructor(private commonFunction:CommonFunction){}
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
   ngOnInit(){
     this.commonFunction.uploadWeatherImages();
     this.leftMenu = this.commonFunction.getMenu().filter(a=>a.menuType == Menu.LEFT)[0];      
-
+    this.rightMenu = this.commonFunction.getMenu().filter(a=>a.menuType == Menu.RIGHT)[0];
+    
     this.currentTempurateStatus.currentTemperature = '77';
     this.currentTempurateStatus.currentWeatherStatus = 'Cloudy';
     this.currentTempurateStatus.currentTemperatureUrl = '../images/weather/sun.png';
