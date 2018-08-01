@@ -4,7 +4,6 @@
     float: left;
     background: transparent;
     position: relative;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;
     color: white;
@@ -25,7 +24,7 @@
     background: transparent;
     position: relative;
     font-size: 3.2vw;
-    font-weight: 700;
+    font-weight: 600;
     color: white;
     float: left;
 }
