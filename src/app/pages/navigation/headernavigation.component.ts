@@ -5,7 +5,7 @@ import{ ICurrentWeather } from '../../interfaces/iweather';
 @Component({
     selector: 'header-navigation',
     templateUrl: './headernavigation.component.html',
-    styleUrls: ['./navigation.css']
+    styleUrls: ['./navigation.css', '../../main/app.component.css']
 })
 
 export class HeaderNavigation {

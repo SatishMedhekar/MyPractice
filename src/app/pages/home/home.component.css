@@ -28,3 +28,17 @@
     border-bottom-right-radius: 10px 10px;
     border-bottom-left-radius: 10px 10px;
  }
+
+ .innerBoxWeather{
+    font-family: Ciutadella-Md;
+    height:40%; 
+    width:100%; 
+    margin:0 auto; 
+    font-size:1.1vw;
+ }
+
+ .innerBoxDay{
+    height:60%; width:100%; margin:0 auto; font-size:2.1vw; 
+    font-family: Ciutadella-Md;
+    font-weight: 600;
+ }

@@ -36,11 +36,11 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
         //loader: 'file-loader?name=assets/[name].[hash].[ext]'
         loader:'file-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: 'images/',
-          publicPath: 'images/'
-        }
+        // options: {
+        //   name: '[name].[ext]',
+        //   outputPath: 'images/',
+        //   publicPath: 'images/'
+        // }
       },
       {
         test: /\.css$/,
@@ -72,13 +72,7 @@ module.exports = {
     ]),
 
     new UglifyJSPlugin({
-      sourceMap: false,
-      minimize: true,
-      compress: {
-          drop_debugger: true,
-          warnings: false,
-          drop_console: true
-      }
+      cache:true
       //cache: path.join(__dirname, 'webpack-cache/uglify-cache'),
     }),
     //new webpack.optimize.UglifyJsPlugin() ,
