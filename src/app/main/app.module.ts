@@ -15,11 +15,12 @@ import{RightNavigation} from '../pages/navigation/rightnavigation.component';
 import{HomeComponent} from '../pages/home/home.component';
 
 //service
-import{CommonFunction} from '../service/customfunction';
+import{JQ_TOKEN, CommonFunction} from '../service/index';
 
 //appRoutes
 import{appRouter} from './route'
 
+ let jQuery= window['$'];
 
 @NgModule({
   declarations: [
@@ -36,7 +37,10 @@ import{appRouter} from './route'
     HttpModule,
     RouterModule.forRoot(appRouter)
   ],
-  providers: [CommonFunction],
+  providers: [
+    CommonFunction,
+    {provide: JQ_TOKEN, useValue: jQuery}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

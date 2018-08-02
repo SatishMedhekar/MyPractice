@@ -8,6 +8,10 @@
     src: url('/src/app/fonts/Ciutadella-Regular.ttf'), url('/src/app/fonts/Ciutadella-Medium.ttf')
 }
 
+@font-face{
+    font-family: 'AbrilFatface';
+    src: url('/src/app/fonts/AbrilFatface-Regular.ttf'), url('/src/app/fonts/AbrilFatface-Regular.ttf')
+}
 
 body {
     color:grey;

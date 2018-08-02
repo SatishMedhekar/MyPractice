@@ -72,7 +72,8 @@ module.exports = {
     ]),
 
     new UglifyJSPlugin({
-      cache:true
+      cache:true,
+      sourceMap:true
       //cache: path.join(__dirname, 'webpack-cache/uglify-cache'),
     }),
     //new webpack.optimize.UglifyJsPlugin() ,
