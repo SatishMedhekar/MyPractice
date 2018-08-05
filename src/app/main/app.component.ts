@@ -18,15 +18,31 @@ export class AppComponent implements OnInit {
   currentTempurateStatus : ICurrentWeather = {};
   leftMenu : IMenu={};
   rightMenu : IMenu={};
+  menu:IMenu[];
   toggle:boolean = true;
+  
 
   constructor(private commonFunction:CommonFunction,
              @Inject(JQ_TOKEN) private $ : any){}
 
   ngOnInit(){
     this.commonFunction.uploadWeatherImages();
-    this.leftMenu = this.commonFunction.getMenu().filter(a=>a.menuType == Menu.LEFT)[0];      
-    this.rightMenu = this.commonFunction.getMenu().filter(a=>a.menuType == Menu.RIGHT)[0];
+    //this.leftMenu = this.commonFunction.getMenu().filter(a=>a.menuType == Menu.LEFT)[0];      
+    
+    this.commonFunction.getMenu().subscribe((mnu:IMenu[]) => {
+      this.menu = mnu;
+      this.leftMenu = mnu.filter(a=>a.menuType == 0 )[0];
+      this.rightMenu = mnu.filter(a=>a.menuType == 1)[0];
+    })
+    
+    //this.leftMenu = menu.filter(a=>a.menuType == Menu.LEFT)[0];
+    //this.rightMenu = menu.filter(a=>a.menuType == Menu.RIGHT)[0];
+    
+    
+    
+    ;
+
+    // this.rightMenu = this.commonFunction.getMenu().filter(a=>a.menuType == Menu.RIGHT)[0];
     
     this.currentTempurateStatus.currentTemperature = '77';
     this.currentTempurateStatus.currentWeatherStatus = 'Cloudy';

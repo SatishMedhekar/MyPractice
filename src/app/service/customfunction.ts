@@ -1,7 +1,9 @@
 import{Injectable} from '@angular/core';
+import {Subject, Observable} from 'rxjs';
 import {IPhoto} from '../interfaces/iphoto';
 import{IMenu,IMenuDetail} from '../interfaces/imenu';
 import{Menu} from '../interfaces/enum';
+
 
 @Injectable()
 
@@ -64,14 +66,21 @@ export class CommonFunction{
         // require('../images/Pics/sunverylittlecloud.png')
 }
 
-    getMenu():IMenu[]{
-        return [{menuType: Menu.LEFT,
-                menuDetail:[{id:'1', displayOrder: 0, name: 'Light', imagePath: '../images/Extras/', imageFileName: 'light24.ico'   },
-                            {id:'2', displayOrder: 1, name: 'Music', imagePath: '../images/Extras/', imageFileName: 'music24.ico'   },
-                            {id:'3', displayOrder: 2, name: 'Message', imagePath: '../images/Extras/', imageFileName: 'message24.ico'   }]  },
-                {menuType: Menu.RIGHT, 
-                    menuDetail:[{id:'4', displayOrder: 0, name: 'Weather', imagePath: '../images/Extras/', imageFileName: 'temperature24.ico'   },
-                                {id:'5', displayOrder: 1, name: 'Calendar', imagePath: '../images/Extras/', imageFileName: 'calendar24.ico'   },
-                                {id:'6', displayOrder: 2, name: 'Setting', imagePath: '../images/Extras/', imageFileName: 'settings-25-16.ico'   }]  }]
+    getMenu():Observable<IMenu[]>{
+        let subject = new Subject<IMenu[]>();
+
+        setTimeout(()=>{
+        subject.next(navigationMenu); subject.complete()},100)
+                return subject;
     }
+   
 }
+
+const navigationMenu:IMenu[] =[{menuType: Menu.LEFT,
+    menuDetail:[{id:'1', displayOrder: 0, name: 'Light', imagePath: '../images/Extras/', imageFileName: 'light24.ico'   },
+                {id:'2', displayOrder: 1, name: 'Music', imagePath: '../images/Extras/', imageFileName: 'music24.ico'   },
+                {id:'3', displayOrder: 2, name: 'Message', imagePath: '../images/Extras/', imageFileName: 'message24.ico'   }]  },
+    {menuType: Menu.RIGHT, 
+        menuDetail:[{id:'4', displayOrder: 0, name: 'Weather', imagePath: '../images/Extras/', imageFileName: 'temperature24.ico'   },
+                    {id:'5', displayOrder: 1, name: 'Calendar', imagePath: '../images/Extras/', imageFileName: 'calendar24.ico'   },
+                    {id:'6', displayOrder: 2, name: 'Setting', imagePath: '../images/Extras/', imageFileName: 'settings-25-16.ico'   }]  }]
