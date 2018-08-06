@@ -1,13 +1,16 @@
 import{Injectable} from '@angular/core';
-import {Subject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {IPhoto} from '../interfaces/iphoto';
 import{IMenu,IMenuDetail} from '../interfaces/imenu';
 import{Menu} from '../interfaces/enum';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
 
 export class CommonFunction{
+
+    constructor(private http: HttpClient){}
 
  getPhotoList():IPhoto[]{
     let photolist:IPhoto[];
@@ -39,6 +42,8 @@ export class CommonFunction{
     return photolist;
 }
 
+
+
  uploadWeatherImages():void{
        
         // require('../images/night.jpg')
@@ -67,11 +72,10 @@ export class CommonFunction{
 }
 
     getMenu():Observable<IMenu[]>{
-        let subject = new Subject<IMenu[]>();
-
-        setTimeout(()=>{
-        subject.next(navigationMenu); subject.complete()},100)
-                return subject;
+        // let subject = new BehaviorSubject <IMenu[]>(navigationMenu);
+        // subject.next(navigationMenu);
+        // return subject;
+        return this.http.get<IMenu[]>('/api/sideMenu')
     }
    
 }

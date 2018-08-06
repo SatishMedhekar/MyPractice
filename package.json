@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "webpack-dev-server --progress",
+    "start": "webpack-dev-server --progress --proxy-config proxy.conf.json",
     "hmr": "ng serve --hmr -o -c=hmr",
+    "server": "node node_modules/ngf-server/server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -24,6 +25,7 @@
     "core-js": "^2.5.4",
     "file-system": "^2.2.2",
     "jquery": "^3.3.1",
+    "ngf-server": "^1.0.2",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },
