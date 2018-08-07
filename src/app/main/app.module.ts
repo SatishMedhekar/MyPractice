@@ -14,6 +14,7 @@ import{HeaderNavigation} from '../pages/navigation/headernavigation.component'
 import{LeftNavigation} from '../pages/navigation/leftnavigation.component';
 import{RightNavigation} from '../pages/navigation/rightnavigation.component';
 import{HomeComponent} from '../pages/home/home.component';
+import{WeatherDetailComponent} from '../pages/weather/weatherdetail.component';
 
 //service
 import{JQ_TOKEN, CommonFunction} from '../service/index';
@@ -30,6 +31,7 @@ import{appRouter} from './route'
     LeftNavigation,
     RightNavigation,
     HomeComponent,
+    WeatherDetailComponent,
     ConvertToDegree
   ],
   imports: [
@@ -45,4 +47,5 @@ import{appRouter} from './route'
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

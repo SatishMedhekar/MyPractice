@@ -72,10 +72,10 @@ export class CommonFunction{
 }
 
     getMenu():Observable<IMenu[]>{
-        // let subject = new BehaviorSubject <IMenu[]>(navigationMenu);
-        // subject.next(navigationMenu);
-        // return subject;
-        return this.http.get<IMenu[]>('/api/sideMenu')
+        let subject = new BehaviorSubject <IMenu[]>(navigationMenu);
+        subject.next(navigationMenu);
+        return subject;
+        //return this.http.get<IMenu[]>('/api/sideMenu')
     }
    
 }

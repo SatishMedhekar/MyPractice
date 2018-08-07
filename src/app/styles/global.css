@@ -1,0 +1,45 @@
+@font-face{
+    font-family: 'Ciutadella';
+    src: url('/src/app/fonts/Ciutadella-Regular.ttf'), url('/src/app/fonts/Ciutadella-Regular.ttf')
+}
+
+@font-face{
+    font-family: 'Ciutadella-Md';
+    src: url('/src/app/fonts/Ciutadella-Regular.ttf'), url('/src/app/fonts/Ciutadella-Medium.ttf')
+}
+
+@font-face{
+    font-family: 'AbrilFatface';
+    src: url('/src/app/fonts/AbrilFatface-Regular.ttf'), url('/src/app/fonts/AbrilFatface-Regular.ttf')
+}
+
+body {
+    color:grey;
+    background-color: black;
+    text-align: center;  
+    font-size: 100%;
+    line-height: 1.6875;
+    font-family: Ciutadella;
+}
+
+.text{
+    font-family: Ciutadella;
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+}
+
+.text.abr{
+    /* font-family: AbrilFatface; */
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+}
+
+.text.md{
+    font-family: Ciutadella-Md;
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+
+}

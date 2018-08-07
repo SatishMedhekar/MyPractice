@@ -6,11 +6,10 @@ import {JQ_TOKEN} from '../service/jQuery.service';
 import{Menu} from '../interfaces/enum';
 import * as $ from 'jquery';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css', '../styles/global.css']
 })
 
 export class AppComponent implements OnInit {
@@ -67,15 +66,21 @@ export class AppComponent implements OnInit {
 toggleFont(){
   this.toggle = !this.toggle;
   let myFont:string;
-  this.toggle ? myFont = 'Ciutadella' : 'AbrilFatface';
-  var divs = document.getElementsByTagName("div");
-      for(var i = 0; i < divs.length; i++){
-        //do something to each div like
-        //let style = window.getComputedStyle(divs[i]);
-        divs[i].style.fontFamily=myFont;
-     }
-}
+  // this.toggle ? myFont = 'Ciutadella' : 'AbrilFatface';
+  // var divs = document.getElementsByTagName("div");
+  //     for(var i = 0; i < divs.length; i++){
+  //         divs[i].style.fontFamily=myFont;
+  //    }
+var fontName:string = 'AbrilFatface';
+  var original = $(".text");
+      //original.addClass("abr")
+      //original.replaceAll("text abr")
+      //$(".abr").addClass('abr');
 
+    $(".text").css('font-family', fontName);
+  
+  }
+  
 
 }
 
