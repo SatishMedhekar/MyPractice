@@ -1,18 +1,23 @@
-import { Component, OnInit, AfterViewChecked, Inject } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, Inject, ViewEncapsulation } from '@angular/core';
+import{Router} from '@angular/router';
 import {ICurrentWeather} from '../interfaces/iweather';
 import { IMenu, IMenuDetail } from '../interfaces/imenu';
 import {CommonFunction} from '../service/customfunction';
 import {JQ_TOKEN} from '../service/jQuery.service';
 import{Menu} from '../interfaces/enum';
 import * as $ from 'jquery';
+import { AfterContentChecked } from '../../../node_modules/@angular/core';
+import { url } from 'inspector';
+import { StaticInjector } from '../../../node_modules/@angular/core/src/di/injector';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css', '../styles/global.css']
+  styleUrls: ['./app.component.css', '../styles/global.css'],
+  encapsulation:ViewEncapsulation.None
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterContentChecked {
   title = 'Home';
   currentTempurateStatus : ICurrentWeather = {};
   leftMenu : IMenu={};
@@ -20,9 +25,10 @@ export class AppComponent implements OnInit {
   sideMenu:IMenu[];
   Menu = Menu;
   toggle:boolean = true;
-  
+  fontName:string;
 
   constructor(private commonFunction:CommonFunction,
+              private router: Router,
              @Inject(JQ_TOKEN) private $ : any){}
 
   ngOnInit(){
@@ -60,7 +66,14 @@ export class AppComponent implements OnInit {
     //   });
   }
 
-    
+  ngAfterContentInit(){
+    console.log(`ngAfterContentInit => ${this.router.url}`);
+  }
+
+ ngAfterContentChecked(){
+   console.log(`ngAfterContentChecked => ${this.router.url}`);
+   $(".text").css('font-family', this.fontName);
+ }   
  
 
 toggleFont(){
@@ -71,13 +84,13 @@ toggleFont(){
   //     for(var i = 0; i < divs.length; i++){
   //         divs[i].style.fontFamily=myFont;
   //    }
-var fontName:string = 'AbrilFatface';
+ this.fontName = 'AbrilFatface';
   var original = $(".text");
       //original.addClass("abr")
       //original.replaceAll("text abr")
       //$(".abr").addClass('abr');
 
-    $(".text").css('font-family', fontName);
+    $(".text").css('font-family', this.fontName);
   
   }
   
