@@ -1,4 +1,4 @@
-import{ Component, Input, OnInit } from '@angular/core';
+import{ Component, Input, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 import{IMenu, IMenuDetail} from '../../interfaces/imenu'
 import{Menu} from '../../interfaces/enum';
 
@@ -9,18 +9,27 @@ import{Menu} from '../../interfaces/enum';
 })
 
 export class LeftNavigation implements OnInit{
-    @Input() leftMenu:IMenu={};
+    @Input() leftMenu:IMenu;
     lMenu:Array<any>;
     
    
-    constructor(){}
+    constructor(){
+        this.lMenu = [];
+    }
  
     ngOnInit(){
        this.lMenu= this.setImagePath();
     }
     
+    ngOnChanges(changes:SimpleChanges){
+        if(changes['leftMenu'])
+            this.setImagePath();
+    }
+
     setImagePath():Array<any>{
         let lmenus: Array<any> =[];
+        
+        if(!this.leftMenu.menuDetail) return;
 
         this.leftMenu.menuDetail.forEach(a=>{
             let lmenu = {id: a.id, 

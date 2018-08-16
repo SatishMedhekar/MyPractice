@@ -1,9 +1,10 @@
 import{Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, of} from 'rxjs';
 import {IPhoto} from '../interfaces/iphoto';
 import{IMenu,IMenuDetail} from '../interfaces/imenu';
 import{Menu} from '../interfaces/enum';
 import { HttpClient } from '@angular/common/http';
+import {catchError, tap} from 'rxjs/operators';
 
 
 @Injectable()
@@ -72,19 +73,27 @@ export class CommonFunction{
 }
 
     getMenu():Observable<IMenu[]>{
-        let subject = new BehaviorSubject <IMenu[]>(navigationMenu);
-        subject.next(navigationMenu);
-        return subject;
-        //return this.http.get<IMenu[]>('/api/sideMenu')
+        // let subject = new BehaviorSubject <IMenu[]>(navigationMenu);
+        // subject.next(navigationMenu);
+        // return subject;
+        return this.http.get<IMenu[]>('http://localhost:8808/api/notes')
+        .pipe( tap(data => console.log('In Service: ' + JSON.stringify(data))))
     }
    
+
+    private handleError<T> (operation = 'operation', result?: T){
+        return(error:any):Observable<T> => {
+            console.log(error);
+            return of(result as T);
+        }
+    }
 }
 
-const navigationMenu:IMenu[] =[{menuType: Menu.LEFT,
-    menuDetail:[{id:'1', displayOrder: 0, name: 'Light', imagePath: '../images/Extras/', imageFileName: 'light24.ico'   },
-                {id:'2', displayOrder: 1, name: 'Music', imagePath: '../images/Extras/', imageFileName: 'music24.ico'   },
-                {id:'3', displayOrder: 2, name: 'Message', imagePath: '../images/Extras/', imageFileName: 'message24.ico'   }]  },
-    {menuType: Menu.RIGHT, 
-        menuDetail:[{id:'4', displayOrder: 0, name: 'Weather', imagePath: '../images/Extras/', imageFileName: 'temperature24.ico'   },
-                    {id:'5', displayOrder: 1, name: 'Calendar', imagePath: '../images/Extras/', imageFileName: 'calendar24.ico'   },
-                    {id:'6', displayOrder: 2, name: 'Setting', imagePath: '../images/Extras/', imageFileName: 'settings-25-16.ico'   }]  }]
+// const navigationMenu:IMenu[] =[{menuType: Menu.LEFT,
+//     menuDetail:[{id:'1', displayOrder: 0, name: 'Light', imagePath: '../images/Extras/', imageFileName: 'light24.ico'   },
+//                 {id:'2', displayOrder: 1, name: 'Music', imagePath: '../images/Extras/', imageFileName: 'music24.ico'   },
+//                 {id:'3', displayOrder: 2, name: 'Message', imagePath: '../images/Extras/', imageFileName: 'message24.ico'   }]  },
+//     {menuType: Menu.RIGHT, 
+//         menuDetail:[{id:'4', displayOrder: 0, name: 'Weather', imagePath: '../images/Extras/', imageFileName: 'temperature24.ico'   },
+//                     {id:'5', displayOrder: 1, name: 'Calendar', imagePath: '../images/Extras/', imageFileName: 'calendar24.ico'   },
+//                     {id:'6', displayOrder: 2, name: 'Setting', imagePath: '../images/Extras/', imageFileName: 'settings-25-16.ico'   }]  }]

@@ -5,12 +5,17 @@
 
 @font-face{
     font-family: 'Ciutadella-Md';
-    src: url('/src/app/fonts/Ciutadella-Regular.ttf'), url('/src/app/fonts/Ciutadella-Medium.ttf')
+    src: url('/src/app/fonts/Ciutadella-Medium.ttf'), url('/src/app/fonts/Ciutadella-Medium.ttf')
 }
 
 @font-face{
     font-family: 'AbrilFatface';
     src: url('/src/app/fonts/AbrilFatface-Regular.ttf'), url('/src/app/fonts/AbrilFatface-Regular.ttf')
+}
+
+@font-face{
+    font-family: 'ch';
+    src: url('/src/app/fonts/NotoSansCJKjp-Regular.otf'), url('/src/app/fonts/NotoSansCJKjp-Regular.otf')
 }
 
 body {
@@ -19,7 +24,7 @@ body {
     text-align: center;  
     font-size: 100%;
     line-height: 1.6875;
-    font-family: Ciutadella;
+    font-family: ch, AbrilFatface, Ciutadella, Ciutadella-Md;
 }
 
 .text{
