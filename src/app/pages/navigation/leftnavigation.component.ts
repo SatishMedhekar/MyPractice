@@ -8,7 +8,7 @@ import{Menu} from '../../interfaces/enum';
     styleUrls:['./navigation.css']
 })
 
-export class LeftNavigation implements OnInit{
+export class LeftNavigation {
     @Input() leftMenu:IMenu;
     lMenu:Array<any>;
     
@@ -18,12 +18,14 @@ export class LeftNavigation implements OnInit{
     }
  
     ngOnInit(){
-       this.lMenu= this.setImagePath();
+      // this.lMenu= this.setImagePath();
     }
     
+    /*****The logic here is to use ngOnChange.  rightNavigation component uses 
+     * BehaviourSubject to subscribe  */
     ngOnChanges(changes:SimpleChanges){
         if(changes['leftMenu'])
-            this.setImagePath();
+          this.lMenu =  this.setImagePath();
     }
 
     setImagePath():Array<any>{

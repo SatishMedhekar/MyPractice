@@ -5,5 +5,17 @@ interface ICurrentWeather {
 }
 
 
+interface IWeeklyWeather{
+    day?: string;
+    dayWeather?: string;
+    minTemperature?: string;
+    maxTemperature?: string;
+    weatherImage?: string;
+}
 
-export {ICurrentWeather}
+interface IWeather{
+    currentTemperature?: ICurrentWeather;
+    weeklyWeather? : IWeeklyWeather[];
+}
+
+export {ICurrentWeather, IWeeklyWeather, IWeather}

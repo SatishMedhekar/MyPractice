@@ -1,22 +1,20 @@
 <div id="mainContainer">
-   <button type="button" name="Clickme" (click)="toggleFont()">ClickMe</button>
-<div >{{leftMenu.menuType}}</div>
-  <div class="leftNavigation" >
+   
+  <div class="leftNavigation">
   <left-navigation [leftMenu] = "leftMenu" ></left-navigation>
   </div>
 
-<div style="position: relative;float: left; height:99%; width:83.3%; transform:translateX(0.5%);">
-  <div class="header text">
-    <header-navigation [currentTempurateStatus] = "currentTempurateStatus" 
-                       [title] = "title"></header-navigation> 
+  <div style="position: relative;float: left; height:99%; width:83.3%; transform:translateX(0.5%);">
+    <div class="header text">
+    <header-navigation ></header-navigation> 
+    </div>
+    <div style="height:81%; width:100%; margin-top:2%">
+    <router-outlet></router-outlet>
+    </div>
   </div>
 
-  <div style="height:81%; width:100%; margin-top:2%">
-    <router-outlet></router-outlet>
-  </div>
-</div>
   <div class="rightNavigation">
-  <right-navigation [rightMenu] = "rightMenu" ></right-navigation>
+    <right-navigation  [rightMenu] = "rightMenu" ></right-navigation>
   </div>
 
 </div>

@@ -67,3 +67,20 @@
     position: relative; 
     float: left;
 }
+
+.innerBoxWeather{
+    /* font-family: Ciutadella-Md; */
+    height:40%; 
+    width:100%; 
+    margin:0 auto; 
+    font-size:1.1vw;
+    color: white
+ }
+
+ .innerBoxDay{
+    height:60%; 
+    width:100%; 
+    margin:0 auto; 
+    font-size:2.1vw; 
+    color: white;
+ }

@@ -1,6 +1,6 @@
-import { Component, OnInit, AfterViewChecked, Inject, ViewEncapsulation, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, Inject, ViewEncapsulation, OnChanges, SimpleChanges, NgZone } from '@angular/core';
 import{Router} from '@angular/router';
-import {ICurrentWeather} from '../interfaces/iweather';
+import {ICurrentWeather, IWeeklyWeather, IWeather} from '../interfaces/iweather';
 import { IMenu, IMenuDetail } from '../interfaces/imenu';
 import {CommonFunction} from '../service/customfunction';
 import {JQ_TOKEN} from '../service/jQuery.service';
@@ -17,116 +17,61 @@ import { StaticInjector } from '../../../node_modules/@angular/core/src/di/injec
   encapsulation:ViewEncapsulation.None
 })
 
-export class AppComponent implements OnInit, AfterContentChecked {
+export class AppComponent implements OnInit {
   title = 'Home';
   currentTempurateStatus : ICurrentWeather = {};
   leftMenu  : IMenu = {};
-  rightMenu : IMenu = {};
+  rightMenu : IMenu   = {};
   sideMenu  : IMenu[] = [];
   Menu = Menu;
+  weeklyWeather : IWeeklyWeather[]=[];
   toggle    : boolean = true;
   fontName  : string;
   errorMessage:string;
+  weather:any;
 
-  constructor(private commonFunction:CommonFunction,
-              private router: Router,
-             @Inject(JQ_TOKEN) private $ : any){
-               this.leftMenu;
-               this.rightMenu;
-               this.sideMenu = <IMenu[]>[];
-             }
+  constructor(private commonFunction:CommonFunction, private _zone:NgZone){
+    this.leftMenu;
+    this.rightMenu;
+    this.sideMenu = <IMenu[]>[];
+    this.commonFunction.uploadWeatherImages();
+  }
 
   ngOnInit(){
-    this.commonFunction.uploadWeatherImages();
-    //this.setNavigationMenu();
+   this.getMenu();
+   this.getWeather();
+  }
 
+  getMenu(){
     this.commonFunction.getMenu().subscribe((menu:IMenu[]=[]) => {
-      this.sideMenu=[];
       this.sideMenu =  menu;  
       console.log("Navigation Menu", this.sideMenu);
+      this.leftMenu  = this.sideMenu.filter(a=>a.menuType == this.Menu.LEFT)[0];
+      this.rightMenu = this.sideMenu.filter(a=>a.menuType == this.Menu.RIGHT)[0]
+      });
       
-    this.leftMenu = this.sideMenu.filter(a=>a.menuType == this.Menu.RIGHT)[0];
-    this.leftMenu.menuDetail[0].id ='0';
+     
+  }
 
-    //this.rightMenu = this.sideMenu.filter(a=>a.menuType == this.Menu.RIGHT)[0];
-    
+  getWeather(){
+    this.commonFunction.weatherReceivedFromServer()
+    .subscribe(message => {
+      this.weather = message;
+      this._zone.run (() =>{
+        this.setCurrentTemperature(this.weather.currentTemperature);
+      })
     });
+}
+  
 
-    
-    this.currentTempurateStatus.currentTemperature    = '77';
-    this.currentTempurateStatus.currentWeatherStatus  = 'Cloudy';
-    this.currentTempurateStatus.currentTemperatureUrl = '../images/weather/sun.png';
+  setCurrentTemperature(currentTemperature:ICurrentWeather){
+    this.currentTempurateStatus.currentTemperature    = currentTemperature.currentTemperature;
+    this.currentTempurateStatus.currentWeatherStatus  = currentTemperature.currentWeatherStatus;
+    //this.currentTempurateStatus.currentTemperatureUrl = this.requireWrapper('sun.png'); // '../images/Pics/sun.png';
     this.title ='Home';
-
-    // $(window).click(function () {
-    //   //alert('Starting change');
-
-    //   var divs = document.getElementsByTagName("div");
-    //   for(var i = 0; i < divs.length; i++){
-    //     //do something to each div like
-    //     //let style = window.getComputedStyle(divs[i]);
-    //     divs[i].style.fontFamily='AbrilFatface'
-    //  }
-        
-      
-    //     //alert($(this).val());
-    //     //$('.changeMe').css("font-family", 'AbrilFatface');
-    
-    
-
-    
-    //   });
+    //this.currentTempurateStatus.currentTemperatureUrl = this.requireWrapper('sun.png');
   }
-
-  setNavigationMenu(){
-    //this.sideMenu = <IMenu[]>[];
-    var x;
-    this.commonFunction.getMenu().subscribe((menu:IMenu[]=[]) => {
-      this.sideMenu=[];
-    x=menu[0];
-      this.sideMenu =  menu;  
-   
-    //this.leftMenu = menu[0];
-    //this.rightMenu = this.sideMenu.filter(a=>a.menuType == this.Menu.RIGHT)[0];
-    
-    });
-
-
-    
-  }
-
-  ngAfterContentInit(){
-    console.log(`ngAfterContentInit => ${this.router.url}`);
-  }
-
- ngAfterContentChecked(){
-   console.log(`ngAfterContentChecked => ${this.router.url}`);
-   //$(".text").css('font-family', this.fontName);
- }   
  
- ngAfterViewInit(){
-   console.log('ngAfterViewInit')
-   $(".text").css('font-family', this.fontName);
- }
-
-toggleFont(){
-  this.toggle = !this.toggle;
-  let myFont:string;
-  // this.toggle ? myFont = 'Ciutadella' : 'AbrilFatface';
-  // var divs = document.getElementsByTagName("div");
-  //     for(var i = 0; i < divs.length; i++){
-  //         divs[i].style.fontFamily=myFont;
-  //    }
- this.fontName = 'AbrilFatface';
-  var original = $(".text");
-      //original.addClass("abr")
-      //original.replaceAll("text abr")
-      //$(".abr").addClass('abr');
-
-    $(".text").css('font-family', this.fontName);
-  
-  }
-  
 
 }
 

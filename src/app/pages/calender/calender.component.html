@@ -1,0 +1,24 @@
+<!-- <div style="width:89%; height:5% ; position: absolute;">
+    <div style="border: solid 1px red; width: 10%; height:100%; float:left; position:relative">Mon</div>
+    <div style="border: solid 1px red; width: 10%; height:100%; float:left; position:relative">Tue</div>
+    <div style="border: solid 1px red; width: 10%; height:100%; float:left; position:relative">Thu</div>
+    <div style="border: solid 1px red; width: 10%; height:100%; float:left; position:relative">Wed</div>
+    <div style="border: solid 1px red; width: 10%; height:100%; float:left; position:relative">Thu</div>
+    <div style="border: solid 1px red; width: 10%; height:100%; float:left; position:relative">Fri</div>
+    <div style="border: solid 1px red; width: 10%; height:100%; float:left; position:relative">Sat</div>
+    <div style="border: solid 1px red; width: 10%; height:100%; float:left; position:relative">Sun</div>
+</div> -->
+
+<div style="width:100%; height:9% ; position: relative;" >
+    <div class="weeklyDayLabel" *ngFor='let day of weekDays'>{{day.name}}</div>
+</div>
+
+<div style="width:99%; height:90%; position:relative;">
+    <div id={{day}} class ="weeklyDay" *ngFor='let day of thisMonthCalender'>
+    <div style="width: 60%; height:60%; transform: translateX(30%); margin-top: 35%; ">
+        {{day.day}}
+    </div>
+    </div>
+</div>
+
+

@@ -1,5 +1,6 @@
 import{Component, OnInit, Input} from '@angular/core';
 import{IMenu} from '../../interfaces/imenu';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
     selector:'right-navigation',
@@ -8,23 +9,34 @@ import{IMenu} from '../../interfaces/imenu';
 })
 
 export class RightNavigation implements OnInit{
-@Input() rightMenu:IMenu={};
+private _data = new BehaviorSubject<IMenu>(<IMenu>{});
 rMenu:Array<any>;
 
-ngOnInit(){
-    this.rMenu = this.setImagePath();
+@Input() 
+ set rightMenu(value){
+     this._data.next(value)
+ };
+get rightMenu(){
+    return this._data.getValue();
 }
 
-setImagePath():Array<any>{
-    let lmenus: Array<any> =[];
+ngOnInit(){
+     this._data.subscribe( x => {
+        this.rMenu = this.setImagePath(this.rightMenu);
+    });
+}
 
-    this.rightMenu.menuDetail.forEach(a=>{
+setImagePath(rightmenu:IMenu):Array<any>{
+    let lmenus: Array<any> =[];
+    if(!rightmenu.menuDetail) return;
+    rightmenu.menuDetail.forEach(a=>{
         let lmenu = {id: a.id, 
                     displayOrder: a.displayOrder, 
                     name: a.name,
                     imgPath: a.imagePath + a.imageFileName}
-            lmenus.push(lmenu);                    
+                    lmenus.push(lmenu);                    
     })
     return lmenus;
 }
+
 }

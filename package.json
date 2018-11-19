@@ -7,7 +7,7 @@
     "hmr": "ng serve --hmr -o -c=hmr",
     "server": "node node_modules/ngf-server/server.js",
     "build": "ng build",
-    "test": "ng test",
+    "test": "ng test --source-map=false",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -22,11 +22,14 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "@types/socket.io-client": "^1.4.32",
     "core-js": "^2.5.4",
     "file-system": "^2.2.2",
     "jquery": "^3.3.1",
     "ngf-server": "^1.0.2",
-    "rxjs": "^6.0.0",
+    "rxjs": "^6.3.3",
+    "rxjs-compat": "^6.3.3",
+    "socket.io-client": "^2.1.1",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
