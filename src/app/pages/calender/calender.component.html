@@ -14,8 +14,8 @@
 </div>
 
 <div style="width:99%; height:90%; position:relative;">
-    <div id={{day}} class ="weeklyDay" *ngFor='let day of thisMonthCalender'>
-    <div style="width: 60%; height:60%; transform: translateX(30%); margin-top: 35%; ">
+    <div  class ="weeklyDay" *ngFor='let day of thisMonthCalender'>
+    <div id={{day.id}} style="width: 60%; height:60%; transform: translateX(30%); margin-top: 35%; ">
         {{day.day}}
     </div>
     </div>

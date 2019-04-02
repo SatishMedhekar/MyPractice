@@ -24,6 +24,8 @@ import{JQ_TOKEN, CommonFunction} from '../service/index';
 //appRoutes
 import{appRouter} from './route'
 import { WeatherService } from '../pages/weather/service/weather.service';
+import { MainLightControl } from '../pages/LightControl/mainlightcontrol.component';
+import { AuthService } from '../service/AuthService';
 
  let jQuery= window['$'];
 
@@ -37,7 +39,8 @@ import { WeatherService } from '../pages/weather/service/weather.service';
     CalenderComponent,
     WeatherComponent,
     WeatherDetailComponent,
-    ConvertToDegree
+    ConvertToDegree,
+    MainLightControl
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,7 @@ import { WeatherService } from '../pages/weather/service/weather.service';
     RouterModule.forRoot(appRouter)
   ],
   providers: [
-    CommonFunction, WeatherService,
+    CommonFunction, WeatherService, AuthService,
     {provide: JQ_TOKEN, useValue: jQuery}
   ],
   bootstrap: [AppComponent]

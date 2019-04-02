@@ -33,9 +33,24 @@ export class HomeComponent{
     }
    
     getCalenderDetail(){
-      this._zone.run(() =>
-      this.monthlyCalender = this.commonFunction.getCalenderDetail()
-    )
+    //   this._zone.run(() =>
+    //   this.monthlyCalender = this.commonFunction.getCalenderDetail()
+    // )
+    // console.log('In getCalenderdetail')
+    // this.commonFunction.getCalenderDetail.subscribe((calender:any) =>{
+    //   this.monthlyCalender = calender
+    // });
+    // console.log(`Value in getCalenderDetail -> ${this.monthlyCalender}`)
+   
+      this.commonFunction.calenderReceivedFromServer()
+          .subscribe(message => {
+              //   this.weather = message;
+              //   this._zone.run (() =>{
+              //     this.setWeeklyWeather(this.weather.weeklyWeather);
+              console.log(`CalenderReceivedFromServer -> ${JSON.stringify(message)}`)
+              this.monthlyCalender = <IMonthDetail>message;
+          });
+  
     }
 
   setWeeklyWeather(weeklyWeather:IWeeklyWeather[]){

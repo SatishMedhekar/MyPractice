@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Observer } from 'rxjs/Observer';
 import { IPhoto } from '../interfaces/iphoto';
@@ -8,10 +8,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RequestOptions } from '@angular/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { IWeeklyWeather, IWeather } from '../interfaces/iweather';
-import { IWeekDay } from '../interfaces/icalender';
+import { IWeekDay, IMonthCalender } from '../interfaces/icalender';
 import { IMonthDetail, IBirthDay } from '../interfaces/icalender'
 import * as io from 'socket.io-client';
-
 
 const imagePath: String = '../images/Pics/';
 const SERVER_URL = 'http://localhost:8808';
@@ -19,7 +18,8 @@ const SERVER_URL = 'http://localhost:8808';
 export class CommonFunction {
     socket: any;
     observer: Observer<any>;
-
+    //@Output() getCalenderDetail: EventEmitter<any> = new EventEmitter();
+    @Output() isToBeResetToMain: EventEmitter<boolean> = new EventEmitter();
     constructor(private http: HttpClient) {
         this.socket = io.connect(SERVER_URL, {
             reconnection: true,
@@ -88,6 +88,26 @@ export class CommonFunction {
         require('../images/Pics/13rain.png')
     }
 
+    ngOnInit() {
+        this.calenderReceivedFromServer().subscribe(calender => {
+            //this.getCalenderDetail.emit(calender);
+            this.isToBeResetToMain.emit(true);
+        })
+    }
+
+    resetToMainForm(isTriggered: boolean) {
+        this.isToBeResetToMain.emit(false);
+        var cntr = 1;
+
+        setInterval(() => {
+            if (cntr > 2) {
+                this.isToBeResetToMain.emit(true);
+                console.log('Set it to true');
+            }
+            cntr = cntr + 1;
+        }, 60*1000);
+    }
+
     weatherReceivedFromServer() {
         let observable = new Observable(observer => {
             this.socket.on('message', (data: any) => { observer.next(data) });
@@ -95,10 +115,21 @@ export class CommonFunction {
                 this.socket.disconnect();
             }
         });
-
         return observable;
+    }
 
+    calenderReceivedFromServer() {
+        let observable = new Observable(observer => {
+            this.socket.on('calender', (data: any) => {
+                observer.next(data);
+                console.log(`Calender value -> ${JSON.stringify(data)}`);
+            });
 
+            return () => {
+                this.socket.disconnect();
+            }
+        });
+        return observable;
     }
 
     createObservable(): Observable<any> {

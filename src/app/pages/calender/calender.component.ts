@@ -16,9 +16,16 @@ export class CalenderComponent {
     calender: IMonthDetail;
     thisMonthCalender: IMonthCalender[] = [];
 
-    constructor(private commonFunction: CommonFunction) {
+    constructor(private commonFunction: CommonFunction, private _zone: NgZone) {
         this.getWeekDays();
         this.createDivForWeek();
+
+    }
+
+    ngOnInit() {
+        // this.commonFunction.getCalenderDetail.subscribe((calender:any)=>{
+
+        // })
     }
 
     getWeekDays() {
@@ -28,25 +35,48 @@ export class CalenderComponent {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if (changes['monthlyCalender'])
+        if (changes['monthlyCalender']) {
             this.createDivForWeek();
+            this.updateCalenderForBirthday();
+        }
     }
 
     createDivForWeek() {
         if (this.monthlyCalender) {
             var startDay = this.getStartDateForCalender();
-            var thisMonthCalenderDay =1;
+            var thisMonthCalenderDay = 1;
             for (let i = 1; i <= 35; i++) {
                 this.divForrWeek.push(i);
-                let setEachDayForThisCalender: IMonthCalender={id : i, day: null};
-                if (i >= startDay && thisMonthCalenderDay <= this.monthlyCalender.totalDaysInThisMonth)
-                {
+                let setEachDayForThisCalender: IMonthCalender = { id: i, day: null };
+                if (i >= startDay && thisMonthCalenderDay <= this.monthlyCalender.totalDaysInThisMonth) {
                     setEachDayForThisCalender.day = thisMonthCalenderDay;
-                    thisMonthCalenderDay ++;
+                    thisMonthCalenderDay++;
                 }
                 this.thisMonthCalender.push(setEachDayForThisCalender);
             }
+
         }
+    }
+
+    ngAfterViewInit() {
+        //this.updateCalenderForBirthday();
+    }
+
+    updateCalenderForBirthday() {
+        if (!this.monthlyCalender)
+            return;
+        var birthDate = this.monthlyCalender.birthDays;
+        this.thisMonthCalender.forEach(bday => {
+            if (bday) {
+                if (birthDate.filter(bdate => bdate.dayOfMonth == bday.day).length > 0) {
+                    var bdayDiv = document.getElementById(bday.id.toString());
+                    if (bdayDiv)
+                        bdayDiv.querySelector("div").style.backgroundColor = "red";
+
+                    //innerDiv.ba
+                }
+            }
+        })
     }
 
     getStartDateForCalender(): Number {

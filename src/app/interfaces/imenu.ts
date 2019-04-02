@@ -11,6 +11,7 @@
     name?:string;
     imagePath?: string;
     imageFileName? : string;
+    routerLink?:string;
 }
 
 export {IMenu, IMenuDetail};
