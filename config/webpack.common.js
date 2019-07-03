@@ -5,18 +5,18 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 var helpers = require('./helpers');
- 
+
 module.exports = {
   entry: {
     'polyfills': './src/polyfills.ts',
     'vendor': './src/vendor.ts',
-    'app': './src/main.ts'
+    'app': './src/main.ts',
   },
- 
+
   resolve: {
     extensions: ['.ts', '.js']
   },
- 
+
   module: {
     rules: [
       {
@@ -25,7 +25,7 @@ module.exports = {
           {
             loader: 'awesome-typescript-loader',
             options: { configFileName: helpers.root('src', 'tsconfig.json') }
-          } , 'angular2-template-loader'
+          }, 'angular2-template-loader'
         ]
       },
       {
@@ -35,7 +35,7 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|otf|ico)$/,
         //loader: 'file-loader?name=assets/[name].[hash].[ext]'
-        loader:'file-loader',
+        loader: 'file-loader',
         // options: {
         //   name: '[name].[ext]',
         //   outputPath: 'images/',
@@ -54,7 +54,7 @@ module.exports = {
       }
     ]
   },
- 
+
   plugins: [
     // Workaround for angular/angular#11580
     new webpack.ContextReplacementPlugin(
@@ -63,23 +63,24 @@ module.exports = {
       helpers.root('./src'), // location of your src
       {} // a map of your routes
     ),
- 
+
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: ['app', 'vendor', 'polyfills']
     // }),
     new CopyWebpackPlugin([
-      {from:'src/app/images', to: 'images'}
+      { from: 'src/app/images', to: 'images' }
     ]),
 
     new UglifyJSPlugin({
-      cache:true,
-      sourceMap:true
+      cache: true,
+      sourceMap: true
       //cache: path.join(__dirname, 'webpack-cache/uglify-cache'),
     }),
     //new webpack.optimize.UglifyJsPlugin() ,
 
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'src/index.html',
+      excludeChunks: ['server']
     })
   ]
 };

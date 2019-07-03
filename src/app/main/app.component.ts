@@ -14,6 +14,7 @@ import { Subscription, Subject, timer } from 'rxjs';
 import { take } from 'rxjs/internal/operators/take';
 import { AuthService } from '../service/AuthService';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

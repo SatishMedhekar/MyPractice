@@ -1,6 +1,9 @@
 import { Component } from "@angular/core";
-import { CommonFunction } from "../../service";
 import { ElementRef } from "@angular/core";
+import { interval } from "rxjs";
+import { CommonFunction } from "../../service";
+import * as $ from 'jquery';
+declare var jQuery: any;
 
 @Component({
     selector: 'app-mainlightcontrol',
@@ -22,13 +25,10 @@ export class MainLightControl {
     initialX: number = 0;
     xOffset: number = 0;
 
-    constructor(private commonFunction: CommonFunction, private elementRef: ElementRef) {
-
-    }
+    constructor(private commonFunction: CommonFunction, private elementRef: ElementRef) { }
 
     ngOnInit() {
         this.commonFunction.resetToMainForm(true);
-
     }
 
     ngAfterViewInit() {
@@ -46,7 +46,8 @@ export class MainLightControl {
             .addEventListener('touchstart', this.dragStartSwitch.bind(this));
         this.elementRef.nativeElement.querySelector('#switchcase')
             .addEventListener('touchmove', this.dragSwitchEvent.bind(this));
-
+        var demo = document.getElementById("container")
+        console.log('The top value is ' + demo.offsetTop + ' ' + demo.scrollTop);
         // this.elementRef.nativeElement.querySelector('#container')
         //     .addEventListener('touchend', this.dragEnd.bind(this));
 
@@ -65,9 +66,11 @@ export class MainLightControl {
         if (e.type === "touchstart") {
             //this.initialX = e.touches[0].clientX - this.xOffset;
             this.initialY = e.touches[0].clientY - this.yOffset;
+            console.log('dragstart if initialY ' + this.initialY)
         } else {
             //this.initialX = e.clientX - this.xOffset;
             this.initialY = e.clientY - this.yOffset;
+            console.log('dragstart else initialY ' + this.initialY)
         }
 
         if (e.target === this.dragItem) {
@@ -76,12 +79,12 @@ export class MainLightControl {
     }
 
     dragEnd(e: any) {
+        console.log('dragend if initialY ' + this.initialY)
         this.initialY = this.currentY;
         this.active = false;
     }
 
     dragEvent(e: any) {
-
         if (this.active) {
 
             e.preventDefault();
@@ -89,14 +92,26 @@ export class MainLightControl {
 
             if (e.type === "touchmove") {
                 this.currentY = e.touches[0].clientY - this.initialY;
+                console.log(`dragEvent if currentY = ${this.currentY} clientY = ${e.touches[0].clientY} initialY = ${this.initialY} `);
             } else {
                 this.currentY = e.clientY - this.initialY;
+                console.log('dragEvent else ' + this.currentY);
             }
             this.yOffset = this.currentY;
 
-            if (this.currentY > -item.offsetTop && this.currentY < item.offsetTop) {
-                this.setTranslate(0, this.currentY, this.dragItem);
-            }
+            // if (this.currentY < -item.offsetTop) {
+            //     this.currentY = -item.offsetTop;
+            // }
+
+            // if (this.currentY > item.offsetTop) {
+            //     this.currentY = item.offsetTop;
+            // }
+            var demo = document.getElementById("container")
+            console.log('The top value is ' + demo.offsetTop);
+            //if (this.currentY > -item.offsetTop && this.currentY < item.offsetTop) {
+            console.log('On roll currentY ' + this.currentY);
+            this.setTranslate(0, this.currentY, this.dragItem);
+            //}
         }
     }
 
@@ -130,24 +145,52 @@ export class MainLightControl {
 
             e.preventDefault();
             var item = document.getElementById("switch");
-            console.log(`active-> ${this.currentX}, ${this.initialX}, ${e.touches[0].clientX}`);
+            console.log(`active-> ${this.currentX}, ${item.offsetLeft}, ${this.initialX}, ${e.touches[0].clientX}`);
+
             if (e.type === "touchmove") {
                 this.currentX = e.touches[0].clientX - this.initialX;
             } else {
                 this.currentX = e.clientX - this.initialX;
             }
             this.xOffset = this.currentX;
-            if (this.currentX >= - item.offsetLeft && this.currentX <= item.offsetLeft) {
-                this.currentX = this.currentX > 0 && this.currentX <= item.offsetLeft -2 ? - item.offsetLeft : this.currentX;
-                this.currentX = this.currentX < 0 && this.currentX <= - item.offsetLeft -2  ? item.offsetLeft : this.currentX
-                this.setTranslate(this.currentX, 0, this.dragSwitch);
+
+            if (this.currentX < -item.offsetLeft) {
+                this.currentX = -item.offsetLeft;
             }
+
+            if (this.currentX > item.offsetLeft) {
+                this.currentX = item.offsetLeft;
+            }
+
+            //The left and right value is -/+ and a number.  This variable will convert -ve to +ve number then to check the range.
+            var positiveValueOfCurrentX = this.currentX < 0 ? -(this.currentX) : this.currentX;
+
+            // if (positiveValueOfCurrentX <= item.offsetLeft) {
+            //set left or right endpoint for the switch
+            this.currentX = this.currentX > 0 ? item.offsetLeft : -item.offsetLeft;
+            this.setTranslate(this.currentX, 0, this.dragSwitch);
+            this.ocillateSwitch(this.currentX > 0);
+            //}
         }
     }
 
     setTranslateSwitch(xPos: any, yPos: any, el: any) {
         yPos = 0;
         el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    }
+
+    ocillateSwitch(turnOn: boolean) {
+        var item = document.getElementById("item");
+
+        var controllerPosition = turnOn ? item.offsetTop : -item.offsetTop;
+        this.currentY = controllerPosition > 0 ? controllerPosition - 1 : controllerPosition + 1;
+        //this.yOffset = this.currentY;
+        console.log('Calling ocillateSwitch' + item.offsetTop);
+        $('#item').stop().animate({
+            top: "+=" + 0 + "px"
+        }, 2000);
+
+
     }
 
 }
