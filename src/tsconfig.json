@@ -1,4 +1,5 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
@@ -6,9 +7,16 @@
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": [ "es2015", "dom" ],
+    "lib": [
+      "es2015",
+      "dom"
+    ],
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
+    "types": [
+      "jasmine",
+      "node"
+    ],
     "typeRoots": [
       "../node_modules/@types/"
     ]
@@ -19,4 +27,3 @@
     "**/*-aot.ts"
   ]
 }
- 

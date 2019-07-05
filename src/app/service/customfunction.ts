@@ -11,7 +11,7 @@ import { IWeeklyWeather, IWeather } from '../interfaces/iweather';
 import { IWeekDay, IMonthCalender } from '../interfaces/icalender';
 import { IMonthDetail, IBirthDay } from '../interfaces/icalender'
 import * as io from 'socket.io-client';
-
+declare var require: any;
 const imagePath: String = '../images/Pics/';
 const SERVER_URL = 'http://localhost:8808';
 @Injectable()
@@ -105,7 +105,7 @@ export class CommonFunction {
                 console.log('Set it to true');
             }
             cntr = cntr + 1;
-        }, 60*1000);
+        }, 60 * 1000);
     }
 
     weatherReceivedFromServer() {
