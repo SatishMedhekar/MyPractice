@@ -1,17 +1,17 @@
 import { Component } from "@angular/core";
 import { ElementRef } from "@angular/core";
 import { interval } from "rxjs";
-import { CommonFunction } from "../../service";
+import { CommonFunction } from '../../../service'
 import * as $ from 'jquery';
 declare var jQuery: any;
 
 @Component({
-    selector: 'app-mainlightcontrol',
-    templateUrl: 'mainlightcontrol.component.html',
-    styleUrls: ['./mainlightcontrol.component.css']
+    selector: 'app-lightmain',
+    templateUrl: './lightmain.component.html',
+    styleUrls: ['./lightmain.component.css']
 })
 
-export class MainLightControl {
+export class LightMainComponent {
     dragItem: any;
     container: any;
     active: boolean = false;
@@ -169,7 +169,7 @@ export class MainLightControl {
             //set left or right endpoint for the switch
             this.currentX = this.currentX > 0 ? item.offsetLeft : -item.offsetLeft;
             this.setTranslate(this.currentX, 0, this.dragSwitch);
-            this.ocillateSwitch(this.currentX > 0);
+            this.ocillateSwitch(true);
             //}
         }
     }
@@ -187,7 +187,7 @@ export class MainLightControl {
         //this.yOffset = this.currentY;
         console.log('Calling ocillateSwitch' + item.offsetTop);
         $('#item').stop().animate({
-            top: "+=" + 0 + "px"
+            top: "+=" + 120 + "px"
         }, 2000);
 
 

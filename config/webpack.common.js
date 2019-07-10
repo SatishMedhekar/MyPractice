@@ -70,7 +70,7 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: 'src/app/images', to: 'images' }
     ]),
-
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new UglifyJSPlugin({
       cache: true,
       sourceMap: true
