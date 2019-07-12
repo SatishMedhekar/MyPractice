@@ -56,3 +56,18 @@
     user-select: none;
     position: absolute;
   }
+
+
+  /* .mat-tab-group {
+    margin-bottom: 48px;
+    height: 100%;
+    position: relative;
+  }
+
+  .mat-tab-group.mat-tab-body-wrapper{
+    height: 100%;
+  } */
+
+  ::ng-deep .mat-tab-body-wrapper{
+    flex-grow: 1;
+    }

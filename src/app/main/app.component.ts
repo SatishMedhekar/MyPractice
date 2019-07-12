@@ -8,7 +8,7 @@ import { Menu } from '../interfaces/enum';
 import * as $ from 'jquery';
 import { AfterContentChecked } from '../../../node_modules/@angular/core';
 //import { url } from 'inspector';
-import { StaticInjector } from '../../../node_modules/@angular/core/src/di/injector';
+
 import { HostListener } from '@angular/core';
 import { Subscription, Subject, timer } from 'rxjs';
 import { take } from 'rxjs/internal/operators/take';
@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
   endTime = 1;
 
   constructor(
-    private commonFunction: CommonFunction, 
+    private commonFunction: CommonFunction,
     private _zone: NgZone,
     private authService: AuthService,
     private router: Router) {
@@ -56,13 +56,13 @@ export class AppComponent implements OnInit {
     this.getMenu();
     this.getWeather();
 
-    this.commonFunction.isToBeResetToMain.subscribe((result:boolean)=>{
+    this.commonFunction.isToBeResetToMain.subscribe((result: boolean) => {
       // if(result)
       //   this.router.navigate(['./home']);
     })
-   }
+  }
 
- getMenu() {
+  getMenu() {
     this.commonFunction.getMenu().subscribe((menu: IMenu[] = []) => {
       this.sideMenu = menu;
       //this.updateMenuAddRouterLink();
@@ -103,8 +103,8 @@ export class AppComponent implements OnInit {
     //this.currentTempurateStatus.currentTemperatureUrl = this.requireWrapper('sun.png');
   }
 
- 
-    
+
+
 
 
 

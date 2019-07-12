@@ -1,6 +1,5 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { Observer } from 'rxjs/Observer';
+import { BehaviorSubject, Observable, of ,  Observer } from 'rxjs';
 import { IPhoto } from '../interfaces/iphoto';
 import { IMenu, IMenuDetail } from '../interfaces/imenu';
 import { Menu } from '../interfaces/enum';
