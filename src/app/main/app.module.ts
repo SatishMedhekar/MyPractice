@@ -26,10 +26,11 @@ import { appRouter } from './route'
 import { WeatherService } from '../pages/weather/service/weather.service';
 import { LightMainComponent } from '../pages/LightControl/lightmain/lightmain.component';
 import { LightswitchComponent } from '../pages/LightControl/lightswitch/lightswitch.component';
+import { Firstfloorzone1Component } from '../pages/LightControl/firstfloorzone1/firstfloorzone1.component'
 import { AuthService } from '../service/AuthService';
 
-import { MatTabsModule } from '@angular/material/tabs';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { MatTabsModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 let jQuery = window['$'];
 
@@ -45,7 +46,8 @@ let jQuery = window['$'];
     WeatherDetailComponent,
     ConvertToDegree,
     LightMainComponent,
-    LightswitchComponent
+    LightswitchComponent,
+    Firstfloorzone1Component,
   ],
   imports: [
     BrowserModule,

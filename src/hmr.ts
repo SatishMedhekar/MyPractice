@@ -1,5 +1,6 @@
 import { NgModuleRef, ApplicationRef } from '@angular/core';
 import { createNewHosts } from '@angularclass/hmr';
+import { MatTabsModule } from '@angular/material/tabs';
 
 export const hmrBootstrap = (module: any, bootstrap: () => Promise<NgModuleRef<any>>) => {
     let ngModule: NgModuleRef<any>;

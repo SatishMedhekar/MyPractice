@@ -58,12 +58,18 @@
   }
 
 
-  /* .mat-tab-group {
+   .mat-tab-group {
     margin-bottom: 48px;
     height: 100%;
+    width:100%;
     position: relative;
   }
 
+  ::ng-deep .mat-tab-label-content{
+    color: red;
+  }
+
+  /*
   .mat-tab-group.mat-tab-body-wrapper{
     height: 100%;
   } */
