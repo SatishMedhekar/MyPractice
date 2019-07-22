@@ -26,6 +26,7 @@ import { appRouter } from './route'
 import { WeatherService } from '../pages/weather/service/weather.service';
 import { LightMainComponent } from '../pages/LightControl/lightmain/lightmain.component';
 import { LightswitchComponent } from '../pages/LightControl/lightswitch/lightswitch.component';
+import { LightdimmerComponent } from '../pages/LightControl/lightdimmer/lightdimmer.component';
 import { Firstfloorzone1Component } from '../pages/LightControl/firstfloorzone1/firstfloorzone1.component'
 import { AuthService } from '../service/AuthService';
 
@@ -48,6 +49,7 @@ let jQuery = window['$'];
     LightMainComponent,
     LightswitchComponent,
     Firstfloorzone1Component,
+    LightdimmerComponent,
   ],
   imports: [
     BrowserModule,
